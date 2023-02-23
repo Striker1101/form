@@ -5,20 +5,19 @@ import { ThemeProvider } from "styled-components";
 import Nav from "./components/Nav";
 import { AppStyled } from "./components/styles/App.js";
 import theme from "./Theme";
-import { Route, Router } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Homepage from "./components/Homepage"
+import Form from "./components/Form"
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
        <AppStyled>
-        <Router>
-          <Route index element={}  />
-        </Router>
        <Nav />
-     <p>
-      thisjfnlsdfas,
-     </p>
+        <Routes>
+        <Route index element={<Homepage />}  />
+        <Route path={"/form/*"} element={<Form />} />
+        </Routes> 
        </AppStyled>
     
       </ThemeProvider>

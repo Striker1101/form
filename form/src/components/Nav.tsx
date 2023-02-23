@@ -3,19 +3,23 @@ import { Menu } from "@material-ui/icons";
 import {Home} from "@material-ui/icons"
 import { Input } from "@material-ui/icons"
 import React,{ReactElement} from 'react'
+import { Link } from "react-router-dom";
 import { NavStyled } from "./styles/Nav.style";
 export default function Nav():ReactElement {
   return (
    <NavStyled>
-   <span>
-    <Menu />
-   </span>
-   <span>
+   
+   <Menu />
+    
+    <Link to={"/"}>
     <Home />
-   </span>
-   <span>
+    </Link>
+   
+    <Link to={"/form"}>
     <Input />
-   </span>
+    </Link>
+    
+
    </NavStyled>
   )
 }

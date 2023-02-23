@@ -5,7 +5,7 @@ display: flex;
 gap: 10px;
 width: fit-content;
 height:100vh;
-background-color: white;
+background-color:${({theme})=> theme.colors.white};
 padding: 0 5px;
 flex-direction: column;
 

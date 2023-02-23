@@ -4,7 +4,8 @@ interface Theme {
     header:string,
     body:string,
     nav:string,
-    footer:string
+    footer:string,
+    white: string
   },
   mobile:string
 }
@@ -17,6 +18,7 @@ const theme: Theme = {
     body: "#F5F5F5",
     footer: "#003333",
     nav: "black",
+    white:"white"
   },
   mobile: "765px",
 };
