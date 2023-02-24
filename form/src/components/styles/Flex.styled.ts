@@ -1,11 +1,17 @@
 import styled from "styled-components";
 
+interface Props{
+  lgDir?: string,
+  gap?: string,
+  smDir?:string
+}
+
 export const Flex = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: ${({ lgDir }) => lgDir};
-  gap: ${({ gap }) => gap || "0px"};
+  flex-direction: ${(p : Props) => p.lgDir};
+  gap: ${(p : Props) => p.gap || "0px"};
 
   & > div,
   & > ul {
@@ -13,7 +19,7 @@ export const Flex = styled.div`
   }
 
   @media (max-width: ${({ theme }) => theme.mobile}) {
-    flex-direction: ${({ smDir }) => smDir};
+    flex-direction: ${(p : Props) => p.smDir};
     text-align: center;
   }
 `;

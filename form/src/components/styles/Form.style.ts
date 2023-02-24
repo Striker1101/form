@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const FormStyled= styled.div`
 display: flex;
 flex-direction: column;
-
-
+align-items: center;
+justify-content: center;
 `
 
 export const Tags  = styled.div`
@@ -16,6 +16,7 @@ background-color:${({theme})=> theme.colors.white};
 width: 100vw;
 margin: 5px;
 padding: 5px;
+
 
 button{
     background-color: transparent;

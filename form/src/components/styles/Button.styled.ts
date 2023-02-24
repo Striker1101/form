@@ -22,3 +22,14 @@ export const Button = styled.button`
     transform: scale(0.98);
   }
 `;
+
+export const ButtonNative = styled.button`
+    float: left;
+    display:flex;
+    align-items: center;
+    gap: 3px;
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+    margin:40px 0;
+`
