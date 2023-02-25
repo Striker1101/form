@@ -5,17 +5,18 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
+margin:5px;
 `
 
 export const Tags  = styled.div`
 display: flex;
 align-items:center;
 justify-content: space-evenly;
-margin: 2px;
 background-color:${({theme})=> theme.colors.white};
-width: 100vw;
+width: 95vw;
 margin: 5px;
 padding: 5px;
+height: 50px;
 
 
 button{

@@ -1,6 +1,8 @@
 import React, { useState, ReactNode, useRef } from "react";
 import { FormStyled, Tags, Toggle } from "./styles/Form.style";
 import ApplicationForm from "./ApplicationForm";
+import { Provider } from "react-redux";
+import {store} from "../components/Form/redux/store"
 import { Link, Route, Routes } from "react-router-dom";
 import Details from "./Details";
 import WorkFlow from "./WorkFlow";
@@ -31,7 +33,7 @@ export default function NavForm() {
       <Toggle>
       <Routes>
         <Route index element={<Details/>} />
-        <Route path={"/application-form"} element={<ApplicationForm />} />
+        <Route path={"/application-form"} element={<Provider store={store}><ApplicationForm /></Provider>} />
         <Route path={"/workflow"} element={<WorkFlow />} />
         <Route path={"/preview"} element={<Preview />} />
       </Routes>

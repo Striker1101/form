@@ -1,19 +1,19 @@
 import React,{useRef, ReactNode,} from 'react'
 import {Close} from "@material-ui/icons"
 import { ImageStyled, Dragbox, Preview } from '../styles/Image.styled'
+import { useSelector, useDispatch } from "react-redux";
+import { update } from "./redux/action";
 
-interface PropsType {
-    setForm: React.Dispatch<React.SetStateAction<listType>>
-}
-
-export default function Image( props : PropsType) {
-    const setForm = props.setForm
+export default function Image() {
+  const collector = useSelector((state:any) => state.lists);
+  const dispatch = useDispatch();
+    
     const uploadFIle = useRef<HTMLInputElement>(null)
     const previewID = useRef<HTMLInputElement>(null)
     const imageID = useRef<HTMLInputElement>(null)
     function dragNdrop(event: any) {
         var fileName = URL.createObjectURL(event.target.files[0]);
-        setForm((prev : any) => ({ ...prev, image: event.target.files[0] }));
+        dispatch(update(event.target.files[0] ))
         var preview = previewID.current
         var previewImg = document.createElement("img");
         previewImg.setAttribute("src", fileName);

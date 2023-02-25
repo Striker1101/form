@@ -4,7 +4,7 @@ export const NavStyled = styled.div`
 display: flex;
 gap: 10px;
 width: fit-content;
-height:100vh;
+height: inherit;
 background-color:${({theme})=> theme.colors.white};
 padding: 0 5px;
 flex-direction: column;
