@@ -124,7 +124,7 @@ export default function PersonalInfo() {
       <input type="text" name="genderinput" id="genderinput" />
       </Contain>
      
-      <Button id="personal-id"></Button>
+      <Button id="personal"></Button>
     </PersonalStyled>
   )
 }

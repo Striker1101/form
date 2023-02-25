@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+interface Props{
+    flex?: string
+}
 export const PersonalStyled = styled.div`
 width: 100%;
 display:flex;
@@ -71,6 +74,8 @@ export const Header = styled.h2`
     width: 100%;
     position: relative;
     bottom: 20px;
+    display: flex;
+    justify-content:${(p : Props)=> p.flex || "flex-start" } ;
 `
 
 export const Contain = styled.div`
@@ -93,5 +98,64 @@ input{
     border: transparent;
     color: white;
     cursor: pointer;
+}
+`
+export const CustomStyled = styled.div`
+width: 100%;
+height: 100vh;
+background-color:rgba(255, 255, 255, 0,3);
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+display: flex;
+align-items: center;
+justify-content:center;
+position:fixed;
+top:0;
+left: 0;
+`
+
+export const Content = styled.div`
+display: flex;
+align-items: center;
+justify-content:center;
+position:relative;
+flex-direction: column;
+gap: 5px;
+padding: 10px;
+background-color:${({theme})=> theme.colors.white};
+border-radius: 20px;
+z-index: 3;
+width: 80vh;
+
+select{
+    width: 70vh;
+    height: 30px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+input{
+    width: 60vh;
+    border-radius: 0;
+    height: 30px;
+}
+input[type = checkbox]{
+    width: min-content;
+}
+label{
+    margin: 5px 5px;
+    padding: 5px;
+}
+ button{
+    background-color: lightblue;
+    transition: transform ease-in-out;
+    border: transparent;
+    padding: 10px;
+    border-radius: 20px;
+}
+button:hover{
+    transform: scale(0.90);
 }
 `
