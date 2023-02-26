@@ -1,57 +1,68 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from '../store'
+import type { RootState } from "../store";
 
 interface MyData {
-loading: boolean,
-lists:any,
-error:string
+  loading: boolean;
+  start: boolean;
+  lists: any;
+  error: string;
 }
 
-interface obj{
-  version: number,
-  programID: number
+interface obj {
+  version: number;
+  programID: number;
 }
 
-const initialState:MyData = {
+interface listType {
+  image: Array<File>;
+  customQuestion: Array<any>;
+}
+
+const initialState: MyData = {
   loading: false,
-  lists: [],
+  lists: {},
   error: "",
+  start: false,
 };
 
-interface listType{
-  image: Array<File>
-}
+const initailList: listType = {
+  image: [],
+  customQuestion: [],
+};
 
-  const initailList:listType ={
-    image:[]
+export const fetchLists = createAsyncThunk(
+  "lists/fetchById",
+
+  // Declare the type your function argument here:
+  async (data: obj) => {
+    const { version, programID } = data;
+    const response = await fetch(
+      `${
+        process.env.NODE_ENV === "development"
+          ? process.env.REACT_APP_DEV_MODE
+          : process.env.REACT_APP_PRO_MODE
+      }/api/${version}/programs/${programID}/application-form`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          // "Content-Type": "application/x-www-form-urlencoded",
+          Authorization: `Bearer ${"programProviderId"}`,
+        },
+      }
+    );
+    // Inferred return type: Promise<MyData>
+    return (await response.json()) as MyData;
   }
-
-export const fetchLists = createAsyncThunk("lists/fetchById",
-
-// Declare the type your function argument here:
-async (data : obj) => {
-  const {version, programID} = data
-  const response = await fetch(
-    `${ process.env.NODE_ENV === "development"
-  ? process.env.REACT_APP_DEV_MODE
-  : process.env.REACT_APP_PRO_MODE}/api/${version}/programs/${programID}/application-form`,
-  {
-    headers: {
-      "Content-Type": "application/json",
-      // "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: `Bearer ${"programProviderId"}`,
-    },
-  })
-  // Inferred return type: Promise<MyData>
-  return (await response.json()) as MyData
-}
 );
 
 const Lists = createSlice({
   name: "lists",
   initialState,
-  reducers:{
-    UPDATE: (state, action: PayloadAction<any>) => state.lists.image = action.payload,
+  reducers: {
+    UPDATE_IMAGE: (state, action: PayloadAction<any>) =>
+      (state.lists.image = action.payload),
+    UPDATE_CUSTOM_QUESTION: (state, action: PayloadAction<any>) =>
+      state.lists.customQuestion.push(action.payload),
   },
   extraReducers: (builder) => {
     builder.addCase(fetchLists.pending, (state) => {
@@ -68,9 +79,21 @@ const Lists = createSlice({
       state.lists = initailList;
       state.error = action.error.message;
     });
-    builder.addCase("UPDATE", (state, action) => {
+    builder.addCase("UPDATE_IMAGE", (state, action) => {
       state.loading = false;
-      state.lists.image = action.payload
+      state.start = true;
+      state.lists.image = action.payload;
+    });
+    builder.addCase("UPDATE_CUSTOM_QUESTION", (state, action) => {
+      state.loading = false;
+
+      if (action.payload !== "") {
+        state.lists.customQuestion = [
+          ...state.lists.customQuestion,
+          action.payload,
+        ];
+        state.start = true;
+      }
     });
   },
 });
@@ -79,7 +102,6 @@ const Lists = createSlice({
 //   switch
 // }
 export default Lists.reducer;
-
 
 // // Other code such as selectors can use the imported `RootState` type
 // export const selectCount = (state: RootState) => state.lists.value

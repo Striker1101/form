@@ -2,7 +2,7 @@ import React,{useRef, ReactNode,} from 'react'
 import {Close} from "@material-ui/icons"
 import { ImageStyled, Dragbox, Preview } from '../styles/Image.styled'
 import { useSelector, useDispatch } from "react-redux";
-import { update } from "./redux/action";
+import { updateImage } from "./redux/action";
 
 export default function Image() {
   const collector = useSelector((state:any) => state.lists);
@@ -13,15 +13,14 @@ export default function Image() {
     const imageID = useRef<HTMLInputElement>(null)
     function dragNdrop(event: any) {
         var fileName = URL.createObjectURL(event.target.files[0]);
-        dispatch(update(event.target.files[0] ))
+        dispatch(updateImage(event.target.files[0]))
         var preview = previewID.current
         var previewImg = document.createElement("img");
         previewImg.setAttribute("src", fileName);
         preview.appendChild(previewImg);
         if(event.target.files[0]){
           imageID.current.style.display ="none"
-          previewID.current.style.cssText ="display:flex; flex-direction: ; "
-
+          previewID.current.style.cssText ="display:flex;"
         }
     }
     function drag() {
