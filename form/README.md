@@ -1,6 +1,7 @@
 # [Form](https://blog-dashboard-three.vercel.app/)
 
 This is a min project illustrating the ui from the project test [figma link ](https://www.figma.com/file/tXFWdUJrMoapZZ9xaf6AOX/React-%2B-API-task?node-id=0%3A1&t=zbl9uKlFokzGTst0-0)
+the project was made to be responsive for both desktop and mobile and follows cross-platform rules
 
 ## Time duration
 
