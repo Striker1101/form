@@ -34,7 +34,7 @@ export const fetchLists = createAsyncThunk(
   "lists/fetchById",
 
   // Declare the type your function argument here:
-  async (data: obj) => {
+  async (data: obj, ) => {
     const { version, programID } = data;
     const response = await fetch(
       `${

@@ -7,13 +7,14 @@ import { ApplicationFormStyled } from "./styles/ApplicationForm.styled";
 import AdditionalQuestion from "./Form/AdditionalQuestion";
 import { useDispatch } from "react-redux";
 import { fetchLists } from "./Form/redux/reducer/lists";
+import { AppDispatch } from "./Form/redux/store";
 
 export default function ApplicationForm() {
   const data = {
     version: 3,
     programID: 3123123,
   };
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   React.useEffect(() => {
     dispatch(fetchLists(data));
   }, []);
