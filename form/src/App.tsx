@@ -6,21 +6,20 @@ import Nav from "./components/Nav";
 import { AppStyled } from "./components/styles/App.js";
 import theme from "./Theme";
 import { Route, Routes } from "react-router-dom";
-import Homepage from "./components/Homepage"
-import Form from "./components/Form"
+import Homepage from "./components/Homepage";
+import Form from "./components/Form";
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-       <AppStyled>
-       <Nav />
+      <AppStyled>
+        <Nav />
         <Routes>
-        <Route index element={<Homepage />}  />
-        <Route path={"/form/*"} element={<Form />} />
-        </Routes> 
-       </AppStyled>
-    
-      </ThemeProvider>
+          <Route index element={<Homepage />} />
+          <Route path={"/form/*"} element={<Form />} />
+        </Routes>
+      </AppStyled>
+    </ThemeProvider>
   );
 }
 
