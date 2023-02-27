@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import {Add} from "@material-ui/icons"
 import { ButtonNative } from '../styles/Button.styled'
 import CustomQestion from './CustomQuestion'
-import Question from "./Question"
 interface Props {
     id: string
 }
