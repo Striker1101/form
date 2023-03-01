@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "../store";
-
+import { AnyAction } from "@reduxjs/toolkit";
 interface MyData {
   loading: boolean;
   start: boolean;
@@ -34,7 +33,7 @@ export const fetchLists = createAsyncThunk(
   "lists/fetchById",
 
   // Declare the type your function argument here:
-  async (data: obj, ) => {
+  async (data: obj) => {
     const { version, programID } = data;
     const response = await fetch(
       `${
@@ -58,12 +57,7 @@ export const fetchLists = createAsyncThunk(
 const Lists = createSlice({
   name: "lists",
   initialState,
-  reducers: {
-    UPDATE_IMAGE: (state, action: PayloadAction<any>) =>
-      (state.lists.image = action.payload),
-    UPDATE_CUSTOM_QUESTION: (state, action: PayloadAction<any>) =>
-      state.lists.customQuestion.push(action.payload),
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchLists.pending, (state) => {
       state.loading = true;
@@ -79,12 +73,13 @@ const Lists = createSlice({
       state.lists = initailList;
       state.error = action.error.message;
     });
-    builder.addCase("UPDATE_IMAGE", (state, action) => {
+    builder.addCase("UPDATE_IMAGE", (state, action: AnyAction) => {
       state.loading = false;
       state.start = true;
+
       state.lists.image = action.payload;
     });
-    builder.addCase("UPDATE_CUSTOM_QUESTION", (state, action) => {
+    builder.addCase("UPDATE_CUSTOM_QUESTION", (state, action: AnyAction) => {
       state.loading = false;
 
       if (action.payload !== "") {
@@ -98,10 +93,4 @@ const Lists = createSlice({
   },
 });
 
-// const PostTest = (state = Posts.reducer, action)=>{
-//   switch
-// }
 export default Lists.reducer;
-
-// // Other code such as selectors can use the imported `RootState` type
-// export const selectCount = (state: RootState) => state.lists.value

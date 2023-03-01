@@ -17,7 +17,7 @@ interface Paragraph {
 
 interface MultiChoice {
   question: string;
-  choice: Array<string>;
+  choice: string[];
   option: boolean;
   max: number;
   type: string;
@@ -25,7 +25,7 @@ interface MultiChoice {
 
 interface DropDown {
   question: string;
-  choice: Array<string>;
+  choice: string[];
   option: boolean;
   type: string;
 }
@@ -68,11 +68,32 @@ export default function CustomQestion(p: Props) {
   let [_dropDown, setDropDown] = useState(dropDown);
   let [_multiChoice, setMultiChoice] = useState(multiChoice);
   const [_YesNo, setYesNo] = useState(YesNo);
-  const form = useRef<HTMLFormElement | undefined>(undefined);
+  const form = useRef<HTMLFormElement>(null);
+  const [choices, setChoices] = useState<string[]>([""]);
+  const [drops, setDrops] = useState<string[]>([""]);
 
-  // take count for both multi-choice and dropnum
-  let [multiNum, setMultiNum] = useState(0);
-  let [dropNum, setDropNum] = useState(0);
+  //handling choices
+  function setChoiceByIndex(value: any, index: number, pin: string) {
+    if (pin === "choices") {
+      setChoices((prevChoices) => {
+        return prevChoices.map((choice, i) => {
+          if (index === i) {
+            return value;
+          }
+          return choice;
+        });
+      });
+    } else {
+      setDrops((prevDrop) => {
+        return prevDrop.map((drop, i) => {
+          if (index === i) {
+            return value;
+          }
+          return drop;
+        });
+      });
+    }
+  }
 
   //list data from store
   const dispatch = useDispatch();
@@ -89,13 +110,8 @@ export default function CustomQestion(p: Props) {
         break;
       case "Dropdown":
         if (_dropDown.question !== "") {
-          let values: Array<string> = [];
-          for (let i = 0; i < dropNum + 1; i++) {
-            // all values from choice array
-            values.push(document.getElementById(`drop${i}`).value);
-          }
           const dual = _dropDown;
-          dual.choice.push([...values]);
+          dual.choice.push(...drops);
           setDropDown(dual);
           dispatch(updateCustomQuestion(_dropDown));
         }
@@ -103,13 +119,8 @@ export default function CustomQestion(p: Props) {
         break;
       case "multi-choice":
         if (_multiChoice.question !== "") {
-          let values: Array<string> = [];
-          for (let i = 0; i < multiNum + 1; i++) {
-            // all values from choice array
-            values.push(document.getElementById(`choice${i}`).value);
-          }
           const dual = _multiChoice;
-          dual.choice.push([...values]);
+          dual.choice.push(...choices);
           setMultiChoice(dual);
           dispatch(updateCustomQuestion(_multiChoice));
         }
@@ -187,9 +198,12 @@ export default function CustomQestion(p: Props) {
             <div>
               <Question
                 handleForm={handleForm}
-                multiNum={setMultiNum}
-                dropNum={setDropNum}
                 value={select}
+                choices={choices}
+                setChoices={setChoices}
+                drops={drops}
+                setDrops={setDrops}
+                setChoiceByIndex={setChoiceByIndex}
               />
             </div>
           </label>

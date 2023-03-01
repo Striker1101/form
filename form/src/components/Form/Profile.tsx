@@ -1,4 +1,3 @@
-import React from 'react'
 import { Label } from '../styles/input.styled'
 import { PersonalStyled, Header } from '../styles/input.styled'
 import Button from './Button'

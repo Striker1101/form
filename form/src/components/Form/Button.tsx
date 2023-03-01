@@ -1,28 +1,29 @@
-import React, { useState } from 'react'
-import {Add} from "@material-ui/icons"
-import { ButtonNative } from '../styles/Button.styled'
-import CustomQestion from './CustomQuestion'
+import { useState } from "react";
+import { Add } from "@material-ui/icons";
+import { ButtonNative } from "../styles/Button.styled";
+import CustomQestion from "./CustomQuestion";
 interface Props {
-    id: string
+  id: string;
 }
 export default function Button(p: Props) {
-    const id = p.id
-    const [toggle, setToggle] = useState(false)
-    
+  const id = p.id;
+  console.log(id);
+  const [toggle, setToggle] = useState(false);
+
   return (
     <>
-     <ButtonNative onClick={(e)=>{e.preventDefault(); setToggle(!toggle)}}> <Add /> Add a Question</ButtonNative>
-    <div>
-     
-      {
-       toggle ?
-      <CustomQestion 
-      setToggle={setToggle} 
-      toggle={toggle} />
-        : ""
-      }
-    </div>
+      <ButtonNative
+        onClick={(e) => {
+          e.preventDefault();
+          setToggle(!toggle);
+        }}
+      >
+        {" "}
+        <Add /> Add a Question
+      </ButtonNative>
+      <div>
+        {toggle ? <CustomQestion setToggle={setToggle} toggle={toggle} /> : ""}
+      </div>
     </>
-   
-    )
+  );
 }

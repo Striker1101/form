@@ -1,4 +1,3 @@
-import React from "react";
 import { SubmitStyled } from "../styles/input.styled";
 import axios from "axios";
 import { useSelector } from "react-redux";

@@ -1,28 +1,33 @@
-import React, { ReactNode, useState } from "react";
+import React from "react";
 import { Add } from "@material-ui/icons";
 import { Menu } from "@material-ui/icons";
 import { Flex } from "../styles/Flex.styled";
 interface Props {
   value: string;
   handleForm: Function;
-  dropNum: React.Dispatch<React.SetStateAction<number>>;
-  multiNum: React.Dispatch<React.SetStateAction<number>>;
+  choices: Array<string>;
+  drops: Array<string>;
+  setChoiceByIndex: Function;
+  setChoices: React.Dispatch<React.SetStateAction<string[]>>;
+  setDrops: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 export default function Question(p: Props) {
-  const [dropArr, setDropArr] = useState([1]);
-  const [choiceArr, setChoiceArr] = useState([1]);
-  const { value, handleForm, dropNum, multiNum } = p;
+  const {
+    value,
+    handleForm,
+    choices,
+    drops,
+    setChoiceByIndex,
+    setChoices,
+    setDrops,
+  } = p;
   function handleAdd(e: any, pin: string) {
     e.preventDefault();
     if (pin === "choice") {
-      let arr = choiceArr[choiceArr.length - 1] + 1;
-      setChoiceArr(choiceArr.concat(arr));
-      multiNum(choiceArr.length);
+      setChoices(choices.concat(""));
     } else if (pin == "drop") {
-      let arr = dropArr[dropArr.length - 1] + 1;
-      setDropArr(dropArr.concat(arr));
-      dropNum(dropArr.length);
+      setDrops(drops.concat(""));
     }
   }
   switch (value) {
@@ -54,11 +59,18 @@ export default function Question(p: Props) {
             id="question"
           />
           <label htmlFor="choice">
-            {choiceArr.map((arr: any, i: number) => {
+            {choices.map((choice: string, index: number) => {
               return (
-                <Flex key={i} smDir="row" lgDir="row">
+                <Flex key={index} smDir="row" lgDir="row">
                   <Menu />
-                  <input type="text" name="choice" id={`choice${i}`} />
+                  <input
+                    type="text"
+                    name={`choice-${index}`}
+                    value={choice}
+                    onChange={(e) =>
+                      setChoiceByIndex(e.target.value, index, "choices")
+                    }
+                  />
                   <button
                     onClick={(e) => {
                       handleAdd(e, "choice");
@@ -107,11 +119,18 @@ export default function Question(p: Props) {
             name="question"
           />
           <label htmlFor="choice">
-            {dropArr.map((arr: any, i: number) => {
+            {drops.map((drop: any, index: number) => {
               return (
-                <Flex key={i} smDir="row" lgDir="row">
+                <Flex key={index} smDir="row" lgDir="row">
                   <Menu />
-                  <input type="text" name="choice" id={`drop${i}`} />
+                  <input
+                    type="text"
+                    name={`drop-${index}`}
+                    value={drop}
+                    onChange={(e) =>
+                      setChoiceByIndex(e.target.value, index, "drops")
+                    }
+                  />
                   <button
                     onClick={(e) => {
                       handleAdd(e, "drop");

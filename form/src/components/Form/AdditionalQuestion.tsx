@@ -11,11 +11,10 @@ export default function AdditionalQuestion() {
       {!collector.loading && collector.start ? (
         <>
           {collector.lists.customQuestion.map((list: any, i: number) => {
-            console.log(list);
             switch (list.type) {
               case "paragraph":
                 return (
-                  <AddQuesStyle>
+                  <AddQuesStyle key={i}>
                     <div>
                       {list.type}
                       <h4>{list.question}</h4>
@@ -37,6 +36,7 @@ export default function AdditionalQuestion() {
                         type="checkbox"
                         name="option"
                         id="option"
+                        readOnly
                       />
                     </label>
                     <div>
@@ -61,6 +61,7 @@ export default function AdditionalQuestion() {
                         type="checkbox"
                         name="option"
                         id="option"
+                        readOnly
                       />
                     </label>
                     <div>
@@ -86,6 +87,7 @@ export default function AdditionalQuestion() {
                         type="checkbox"
                         name="qualify"
                         id="qualify"
+                        readOnly
                       />
                     </label>
                     <hr />
