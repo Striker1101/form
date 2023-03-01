@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-import { Container } from "./components/styles/Container.styled.js";
 import GlobalStyles from "./components/styles/Global";
 import { ThemeProvider } from "styled-components";
 import Nav from "./components/Nav";
