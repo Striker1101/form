@@ -33,6 +33,7 @@ export default function Image() {
   function handlePreview() {
     imageID.current.style.display = "flex";
     previewID.current.style.cssText = "display:none; ";
+    previewID.current.children[2].remove();
   }
   return (
     <div>
