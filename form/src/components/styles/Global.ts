@@ -6,7 +6,7 @@ const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
 }
 body {
-  background: ${(p : Props) => p.theme.colors.body};
+  background: ${({ theme }) => theme.colors.body};
   color: hsl(192, 100%, 9%);
   font-family: 'Poppins', sans-serif;
   font-size: 1.15em;
@@ -23,6 +23,6 @@ img {
 a{
   text-decoration: none;
 }
-`
+`;
 
-export default GlobalStyles
+export default GlobalStyles;
