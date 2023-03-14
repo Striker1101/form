@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Close } from "@material-ui/icons";
+import CloseIcon from "@mui/icons-material/Close";
 import { ImageStyled, Dragbox, Preview } from "../styles/Image.styled";
 import { useDispatch } from "react-redux";
 import { updateImage } from "./redux/action";
@@ -60,7 +60,7 @@ export default function Image() {
 
       <Preview ref={previewID} id="preview">
         <div onClick={handlePreview}>
-          <Close />
+          <CloseIcon />
           <span>Delete & re-upload</span>
         </div>
       </Preview>

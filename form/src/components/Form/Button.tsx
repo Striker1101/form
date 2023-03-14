@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Add } from "@material-ui/icons";
+import AddIcon from "@mui/icons-material/Add";
 import { ButtonNative } from "../styles/Button.styled";
 import CustomQestion from "./CustomQuestion";
 interface Props {
@@ -13,13 +13,13 @@ export default function Button(p: Props) {
   return (
     <>
       <ButtonNative
-        onClick={(e) => {
+        onClick={(e: any) => {
           e.preventDefault();
           setToggle(!toggle);
         }}
       >
         {" "}
-        <Add /> Add a Question
+        <AddIcon /> Add a Question
       </ButtonNative>
       <div>
         {toggle ? <CustomQestion setToggle={setToggle} toggle={toggle} /> : ""}

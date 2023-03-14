@@ -1,6 +1,6 @@
 import React from "react";
-import { Add } from "@material-ui/icons";
-import { Menu } from "@material-ui/icons";
+import AddIcon from "@mui/icons-material/Add";
+import MenuIcon from "@mui/icons-material/Menu";
 import { Flex } from "../styles/Flex.styled";
 interface Props {
   value: string;
@@ -62,7 +62,7 @@ export default function Question(p: Props) {
             {choices.map((choice: string, index: number) => {
               return (
                 <Flex key={index} smDir="row" lgDir="row">
-                  <Menu />
+                  <MenuIcon />
                   <input
                     type="text"
                     name={`choice-${index}`}
@@ -76,7 +76,7 @@ export default function Question(p: Props) {
                       handleAdd(e, "choice");
                     }}
                   >
-                    <Add />
+                    <AddIcon />
                   </button>
                 </Flex>
               );
@@ -122,7 +122,7 @@ export default function Question(p: Props) {
             {drops.map((drop: any, index: number) => {
               return (
                 <Flex key={index} smDir="row" lgDir="row">
-                  <Menu />
+                  <MenuIcon />
                   <input
                     type="text"
                     name={`drop-${index}`}
@@ -136,7 +136,7 @@ export default function Question(p: Props) {
                       handleAdd(e, "drop");
                     }}
                   >
-                    <Add />
+                    <AddIcon />
                   </button>
                 </Flex>
               );

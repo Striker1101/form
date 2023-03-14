@@ -1,6 +1,6 @@
-import { Menu } from "@material-ui/icons";
-import { Home } from "@material-ui/icons";
-import { Input } from "@material-ui/icons";
+import MenuIcon from "@mui/icons-material/Menu";
+import HomeIcon from "@mui/icons-material/Home";
+import InputIcon from "@mui/icons-material/Input";
 import { ReactElement } from "react";
 import { Link } from "react-router-dom";
 import { NavStyled } from "./styles/Nav.style";
@@ -8,14 +8,14 @@ import { NavStyled } from "./styles/Nav.style";
 export default function Nav(): ReactElement {
   return (
     <NavStyled>
-      <Menu />
+      <MenuIcon />
 
       <Link to={"/"}>
-        <Home />
+        <HomeIcon />
       </Link>
 
       <Link to={"/form"}>
-        <Input />
+        <InputIcon />
       </Link>
     </NavStyled>
   );

@@ -1,5 +1,5 @@
 import React, { ReactNode, useRef, useState } from "react";
-import { Close } from "@material-ui/icons";
+import CloseIcon from "@mui/icons-material/Close";
 import Question from "./Question";
 import { useDispatch } from "react-redux";
 import { updateCustomQuestion } from "./redux/action";
@@ -166,7 +166,7 @@ export default function CustomQestion(p: Props) {
               dispatch(updateCustomQuestion(""));
             }}
           >
-            <Close />
+            <CloseIcon />
           </button>
         </Header>
         <form ref={form}>

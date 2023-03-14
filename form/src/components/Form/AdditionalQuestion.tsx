@@ -1,6 +1,4 @@
-import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Flex } from "../styles/Flex.styled";
 import { PersonalStyled, Header, AddQuesStyle } from "../styles/input.styled";
 import Button from "./Button";
 export default function AdditionalQuestion() {
